@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required Meta Tags Always Come First -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Designed for creative agencies to showcase bold, innovative designs and elevate visual elements.">
+  <!-- Title -->
+  <title>IDEABOX.uz</title>
+
+  <!-- Favicon -->
+  <!-- <link rel="shortcut icon" href="../../favicon.ico"> -->
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Theme Check and Update -->
+  <script>
+    const html = document.querySelector('html');
+    const isLightOrAuto = localStorage.getItem('hs_theme') === 'light' || (localStorage.getItem('hs_theme') === 'auto' && !window.matchMedia('(prefers-color-scheme: dark)').matches);
+    const isDarkOrAuto = localStorage.getItem('hs_theme') === 'dark' || (localStorage.getItem('hs_theme') === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+    if (isLightOrAuto && html.classList.contains('dark')) html.classList.remove('dark');
+    else if (isDarkOrAuto && html.classList.contains('light')) html.classList.remove('light');
+    else if (isDarkOrAuto && !html.classList.contains('dark')) html.classList.add('dark');
+    else if (isLightOrAuto && !html.classList.contains('light')) html.classList.add('light');
+  </script>
+
+  <!-- CSS Preline -->
+  <!-- <link rel="stylesheet" href="https://preline.co/assets/css/main.min.css"> -->
+   <link rel="stylesheet" href="css/tailwind.css">
+</head>
+
+<body class="dark:bg-neutral-900">
+  <!-- ========== HEADER ========== -->
+  <header class="flex flex-wrap lg:justify-start lg:flex-nowrap z-50 w-full py-7">
+    <nav class="relative max-w-7xl w-full flex flex-wrap lg:grid lg:grid-cols-12 basis-full items-center px-4 md:px-6 lg:px-8 mx-auto">
+      <div class="lg:col-span-3 flex items-center">
+        <!-- Logo -->
+        <a class="flex-none rounded-xl text-xl inline-block font-semibold focus:outline-hidden focus:opacity-80" href="/" aria-label="Preline">
+          IDEABOX
+        </a>
+        <!-- End Logo -->
+      </div>
+
+      <!-- Button Group -->
+      <!-- <div class="flex items-center gap-x-1 lg:gap-x-2 ms-auto py-1 lg:ps-6 lg:order-3 lg:col-span-3">
+        <button type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium text-nowrap rounded-xl bg-white border border-gray-200 text-black hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:hover:bg-white/10 dark:text-white dark:hover:text-white dark:focus:text-white">
+          Sign in
+        </button>
+        <button type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium text-nowrap rounded-xl border border-transparent bg-lime-400 text-black hover:bg-lime-500 focus:outline-hidden focus:bg-lime-500 transition disabled:opacity-50 disabled:pointer-events-none">
+          Hire us
+        </button>
+
+        <div class="lg:hidden">
+          <button type="button" class="hs-collapse-toggle size-9.5 flex justify-center items-center text-sm font-semibold rounded-xl border border-gray-200 text-black hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:border-neutral-700 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700" id="hs-navbar-hcail-collapse" aria-expanded="false" aria-controls="hs-navbar-hcail" aria-label="Toggle navigation" data-hs-collapse="#hs-navbar-hcail">
+            <svg class="hs-collapse-open:hidden shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" x2="21" y1="6" y2="6" />
+              <line x1="3" x2="21" y1="12" y2="12" />
+              <line x1="3" x2="21" y1="18" y2="18" />
+            </svg>
+            <svg class="hs-collapse-open:block hidden shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
+            </svg>
+          </button>
+        </div>
+      </div> -->
+      <!-- End Button Group -->
+
+      <!-- Collapse -->
+      <div id="hs-navbar-hcail" class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow lg:block lg:w-auto lg:basis-auto lg:order-2 lg:col-span-6" aria-labelledby="hs-navbar-hcail-collapse">
+        <div class="flex flex-col gap-y-4 gap-x-0 mt-5 lg:flex-row lg:justify-center lg:items-center lg:gap-y-0 lg:gap-x-7 lg:mt-0">
+          <div>
+            <a class="relative inline-block text-black focus:outline-hidden before:absolute before:bottom-0.5 before:start-0 before:-z-1 before:w-full before:h-1 before:bg-lime-400 dark:text-white" href="#works" aria-current="page">Loyihalar</a>
+          </div>
+          <div>
+            <a class="inline-block text-black hover:text-gray-600 focus:outline-hidden focus:text-gray-600 dark:text-white dark:hover:text-neutral-300 dark:focus:text-neutral-300" href="#">Biz haqimizda</a>
+          </div>
+          <!-- <div>
+            <a class="inline-block text-black hover:text-gray-600 focus:outline-hidden focus:text-gray-600 dark:text-white dark:hover:text-neutral-300 dark:focus:text-neutral-300" href="#">About</a>
+          </div>
+          <div>
+            <a class="inline-block text-black hover:text-gray-600 focus:outline-hidden focus:text-gray-600 dark:text-white dark:hover:text-neutral-300 dark:focus:text-neutral-300" href="#">Careers</a>
+          </div>
+          <div>
+            <a class="inline-block text-black hover:text-gray-600 focus:outline-hidden focus:text-gray-600 dark:text-white dark:hover:text-neutral-300 dark:focus:text-neutral-300" href="#">Blog</a> 
+          </div>-->
+        </div>
+      </div>
+      <!-- End Collapse -->
+    </nav>
+  </header>
+  <!-- ========== END HEADER ========== -->
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main id="content">
+    <!-- Slider -->
+    <div class="px-4 sm:px-6 lg:px-8 ">
+      <div data-hs-carousel='{
+          "loadingClasses": "opacity-0"
+        }' class="relative">
+        <div class="hs-carousel relative overflow-hidden w-full h-120 md:h-[calc(100vh-106px)] md:h-[calc(100vh-106px)] bg-gray-100 rounded-2xl dark:bg-neutral-800">
+          <div class="hs-carousel-body absolute top-0 bottom-0 start-0 flex flex-nowrap transition-transform duration-700 opacity-0">
+            <!-- Item -->
+            <div class="hs-carousel-slide">
+              <div class="h-120 md:h-[calc(100vh-106px)] md:h-[calc(100vh-106px)] flex flex-col bg-cover bg-center bg-no-repeat"  style="background-image: url('img/bg2.jpg');">
+                <div class="mt-auto w-2/3 md:max-w-lg ps-5 pb-5 md:ps-10 md:pb-10">
+                  <span class="block text-white text-xl md:text-3xl">“Fikrlayman, demak mavjudman.”</span>
+                  <span class="block text-white">— Rene Dekart</span>
+                </div>
+              </div>
+            </div>
+            <!-- End Item -->
+
+            <!-- Item -->
+            <div class="hs-carousel-slide">
+              <div class="h-120 md:h-[calc(100vh-106px)] md:h-[calc(100vh-106px)] flex flex-col bg-cover bg-center bg-no-repeat" style="background-image: url('img/greek-background.jpg');">
+                <div class="mt-auto w-2/3 md:max-w-lg ps-5 pb-5 md:ps-10 md:pb-10">
+                  <span class="block text-white text-xl md:text-3xl">Ilm bizga nima qilish mumkinligini o'rgatsa, falsafa nima qilish kerakligini o'rgatadi.</span>
+                  <span class="block text-white">- Jules Henri Poincaré</span>
+                </div>
+              </div>
+            </div>
+            <!-- End Item -->
+
+            <!-- Item -->
+            <div class="hs-carousel-slide">
+              <div class="h-120 md:h-[calc(100vh-106px)] md:h-[calc(100vh-106px)] flex flex-col  bg-cover bg-center bg-no-repeat" style="background-image: url(img/bg3.jpg);">
+                <div class="mt-auto w-2/3 md:max-w-lg ps-5 pb-5 md:ps-10 md:pb-10">
+                  <span class="block text-white bg-black rounded-xl p-5 text-xl">Falsafa — hayot haqida o'ylash emas, hayotni ongli yashash san'atidir.</span>
+                </div>
+              </div>
+            </div>
+            <!-- End Item -->
+          </div>
+        </div>
+
+        <!-- Arrows -->
+        <button type="button" class="hs-carousel-prev hs-carousel-disabled:opacity-50 disabled:pointer-events-none absolute inset-y-0 start-0 inline-flex justify-center items-center w-12 h-full text-black hover:bg-white/20 rounded-s-2xl focus:outline-hidden focus:bg-white/20">
+          <span class="text-2xl" aria-hidden="true">
+            <svg class="shrink-0 size-3.5 md:size-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"></path>
+            </svg>
+          </span>
+          <span class="sr-only">Previous</span>
+        </button>
+
+        <button type="button" class="hs-carousel-next hs-carousel-disabled:opacity-50 disabled:pointer-events-none absolute inset-y-0 end-0 inline-flex justify-center items-center w-12 h-full text-black hover:bg-white/20 rounded-e-2xl focus:outline-hidden focus:bg-white/20">
+          <span class="sr-only">Next</span>
+          <span class="text-2xl" aria-hidden="true">
+            <svg class="shrink-0 size-3.5 md:size-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"></path>
+            </svg>
+          </span>
+        </button>
+        <!-- End Arrows -->
+      </div>
+    </div>
+    <!-- End Slider -->
+
+    <!-- Works -->
+    <div class="max-w-7xl px-4 sm:px-6 lg:px-8 py-12 lg:py-24 mx-auto" id="works">
+      <div class="mb-6 sm:mb-10 max-w-2xl text-center mx-auto">
+        <h1 class="font-medium text-black text-2xl sm:text-4xl dark:text-white">
+          Loyihalarimiz
+        </h1>
+      </div>
+
+      <!-- Card Grid -->
+      <div class=" grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-12">
+        <!-- Card -->
+        <a class="group flex flex-col focus:outline-hidden" href="./game1.html">
+          <div class="aspect-w-16 aspect-h-12 overflow-hidden bg-gray-100 rounded-2xl dark:bg-neutral-800">
+            <img class="group-hover:scale-105 group-focus:scale-105 transition-transform duration-500 ease-in-out object-cover rounded-2xl" src="./img/game1.png" alt="Faylasuflar o‘yini rasmi">
+          </div>
+
+          <div class="pt-4">
+            <h3 class="relative inline-block font-medium text-lg text-black before:absolute before:bottom-0.5 before:start-0 before:-z-1 before:w-full before:h-1 before:bg-lime-400 before:transition before:origin-left before:scale-x-0 group-hover:before:scale-x-100 dark:text-white">
+              Faylasuflar Kurashi
+            </h3>
+            <p class="mt-1 text-gray-600 dark:text-neutral-400">
+              Fikr yuritish va falsafiy bilimlaringizni sinovdan o‘tkazuvchi interaktiv viktorina o‘yini. Oson, o‘rta va qiyin bosqichlari mavjud.
+            </p>
+
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span class="py-1.5 px-3 bg-white text-gray-600 border border-gray-200 text-xs sm:text-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400">
+                O‘yin
+              </span>
+              <span class="py-1.5 px-3 bg-white text-gray-600 border border-gray-200 text-xs sm:text-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400">
+                Falsafa
+              </span>
+              <span class="py-1.5 px-3 bg-white text-gray-600 border border-gray-200 text-xs sm:text-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400">
+                Ta’lim
+              </span>
+            </div>
+          </div>
+        </a>
+        <!-- End Card -->
+
+        <!-- Card -->
+        <a class="group flex flex-col focus:outline-hidden" href="./game2.html">
+          <div class="aspect-w-16 aspect-h-12 overflow-hidden bg-gray-100 rounded-2xl dark:bg-neutral-800">
+            <img class="group-hover:scale-105 group-focus:scale-105 transition-transform duration-500 ease-in-out object-cover rounded-2xl" 
+                src="./img/game2.png" 
+                alt="Falsafiy sarguzasht rasmi">
+          </div>
+
+          <div class="pt-4">
+            <h3 class="relative inline-block font-medium text-lg text-black before:absolute before:bottom-0.5 before:start-0 before:-z-1 before:w-full before:h-1 before:bg-lime-400 before:transition before:origin-left before:scale-x-0 group-hover:before:scale-x-100 dark:text-white">
+              Falsafiy sarguzasht
+            </h3>
+            <p class="mt-1 text-gray-600 dark:text-neutral-400">
+              Sokrat, Platon va Aristotel bilan qadimgi Afinada aql sarguzashtiga sho‘ng'ing!
+            </p>
+
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span class="py-1.5 px-3 bg-white text-gray-600 border border-gray-200 text-xs sm:text-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400">
+                Tarixiy kvest
+              </span>
+              <span class="py-1.5 px-3 bg-white text-gray-600 border border-gray-200 text-xs sm:text-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400">
+                Falsafa o‘yini
+              </span>
+            </div>
+          </div>
+        </a>
+        <!-- End Card -->
+
+        <!-- Card -->
+        <!-- <a class="group flex flex-col focus:outline-hidden" href="#">
+          <div class="aspect-w-16 aspect-h-12 overflow-hidden bg-gray-100 rounded-2xl dark:bg-neutral-800">
+            <img class="group-hover:scale-105 group-focus:scale-105 transition-transform duration-500 ease-in-out object-cover rounded-2xl" src="https://images.unsplash.com/photo-1649999920973-ab6bfd0c0017?q=80&w=560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Blog Image">
+          </div>
+
+          <div class="pt-4">
+            <h3 class="relative inline-block font-medium text-lg text-black before:absolute before:bottom-0.5 before:start-0 before:-z-1 before:w-full before:h-1 before:bg-lime-400 before:transition before:origin-left before:scale-x-0 group-hover:before:scale-x-100 dark:text-white">
+              Day Spa
+            </h3>
+            <p class="mt-1 text-gray-600 dark:text-neutral-400">
+              Designing a new cocktail can
+            </p>
+
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span class="py-1.5 px-3 bg-white text-gray-600 border border-gray-200 text-xs sm:text-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400">
+                Brand Strategy
+              </span>
+              <span class="py-1.5 px-3 bg-white text-gray-600 border border-gray-200 text-xs sm:text-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400">
+                Visual Identity
+              </span>
+            </div>
+          </div>
+        </a> -->
+        <!-- End Card -->
+
+        <!-- Card -->
+        <!-- <a class="group flex flex-col focus:outline-hidden" href="#">
+          <div class="aspect-w-16 aspect-h-12 overflow-hidden bg-gray-100 rounded-2xl dark:bg-neutral-800">
+            <img class="group-hover:scale-105 group-focus:scale-105 transition-transform duration-500 ease-in-out object-cover rounded-2xl" src="https://images.unsplash.com/photo-1528291954423-c0c71c12baeb?q=80&w=560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Blog Image">
+          </div>
+
+          <div class="pt-4">
+            <h3 class="relative inline-block font-medium text-lg text-black before:absolute before:bottom-0.5 before:start-0 before:-z-1 before:w-full before:h-1 before:bg-lime-400 before:transition before:origin-left before:scale-x-0 group-hover:before:scale-x-100 dark:text-white">
+              Diamond Dynamics
+            </h3>
+            <p class="mt-1 text-gray-600 dark:text-neutral-400">
+              From cutting-edge equipment to stylish apparel
+            </p>
+
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span class="py-1.5 px-3 bg-white text-gray-600 border border-gray-200 text-xs sm:text-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400">
+                Sports Gear
+              </span>
+              <span class="py-1.5 px-3 bg-white text-gray-600 border border-gray-200 text-xs sm:text-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400">
+                Equipment
+              </span>
+              <span class="py-1.5 px-3 bg-white text-gray-600 border border-gray-200 text-xs sm:text-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400">
+                Discovery
+              </span>
+            </div>
+          </div>
+        </a> -->
+        <!-- End Card -->
+      </div>
+      <!-- End Card Grid -->
+
+      <!-- <div class="mt-10 lg:mt-20 text-center">
+        <a class="relative inline-block font-medium md:text-lg text-black before:absolute before:bottom-0.5 before:start-0 before:-z-1 before:w-full before:h-1 before:bg-lime-400 hover:before:bg-black focus:outline-hidden focus:before:bg-black dark:text-white dark:hover:before:bg-white dark:focus:before:bg-white" href="#">
+          View all Work
+        </a>
+      </div> -->
+    </div>
+    <!-- End Works -->
+
+    <!-- Testimonials -->
+    <!-- <div class="bg-black">
+      <div class="max-w-7xl px-4 sm:px-6 lg:px-8 py-12 lg:py-24 mx-auto">
+        <blockquote class="max-w-4xl mx-auto">
+          <p class="mb-6 md:text-lg">
+            <span class="font-semibold text-lime-400">Philip,</span> <span class="text-neutral-500">CEO at Day Spa</span>
+          </p>
+
+          <p class="text-xl sm:text-2xl md:text-3xl md:leading-normal text-white">
+            I'm absolutely floored by the level of care and attention to detail the team at Preline have put into this project and for one can guarantee that we will be a return customer.
+          </p>
+
+          <footer class="mt-6 md:mt-10">
+            <div class="border-neutral-700">
+              <button type="button" class="group inline-flex items-center gap-x-3 text-neutral-400 text-sm focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none">
+                <span class="size-8 md:size-10 flex flex-col justify-center items-center bg-white text-black rounded-full group-hover:bg-lime-400 group-focus:bg-lime-400">
+                  <svg class="shrink-0 size-5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393" />
+                  </svg>
+                </span>
+                Watch the Video
+              </button>
+            </div>
+          </footer>
+        </blockquote>
+      </div>
+    </div> -->
+    <!-- End Testimonials -->
+
+    <!-- Contact -->
+    <div class="max-w-7xl px-4 sm:px-6 lg:px-8 py-12 lg:py-24 mx-auto">
+      <div class="mb-6 sm:mb-10 max-w-2xl text-center mx-auto">
+        <h2 class="font-medium text-black text-2xl sm:text-4xl dark:text-white">
+          Contacts
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 lg:items-center gap-6 md:gap-8 lg:gap-12">
+        <div class="aspect-w-16 aspect-h-6 lg:aspect-h-14 overflow-hidden bg-gray-100 rounded-2xl dark:bg-neutral-800">
+          <img class="group-hover:scale-105 group-focus:scale-105 transition-transform duration-500 ease-in-out object-cover rounded-2xl" src="https://images.unsplash.com/photo-1572021335469-31706a17aaef?q=80&w=560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Contacts Image">
+        </div>
+        <!-- End Col -->
+
+        <div class="space-y-8 lg:space-y-16">
+          <div>
+            <h3 class="mb-5 font-semibold text-black dark:text-white">
+              Our address
+            </h3>
+
+            <!-- Grid -->
+            <div class="grid sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12">
+              <div class="flex gap-4">
+                <svg class="shrink-0 size-5 text-gray-500 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+
+                <div class="grow">
+                  <p class="text-sm text-gray-600 dark:text-neutral-400">
+                    United Kingdom
+                  </p>
+                  <address class="mt-1 text-black not-italic dark:text-white">
+                    300 Bath Street, Tay House<br>
+                    Glasgow G2 4JR
+                  </address>
+                </div>
+              </div>
+            </div>
+            <!-- End Grid -->
+          </div>
+
+          <div>
+            <h3 class="mb-5 font-semibold text-black dark:text-white">
+              Our contacts
+            </h3>
+
+            <!-- Grid -->
+            <div class="grid sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12">
+              <div class="flex gap-4">
+                <svg class="shrink-0 size-5 text-gray-500 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21.2 8.4c.5.38.8.97.8 1.6v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V10a2 2 0 0 1 .8-1.6l8-6a2 2 0 0 1 2.4 0l8 6Z"></path>
+                  <path d="m22 10-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 10"></path>
+                </svg>
+
+                <div class="grow">
+                  <p class="text-sm text-gray-600 dark:text-neutral-400">
+                    Email us
+                  </p>
+                  <p>
+                    <a class="relative inline-block font-medium text-black before:absolute before:bottom-0.5 before:start-0 before:-z-1 before:w-full before:h-1 before:bg-lime-400 hover:before:bg-black focus:outline-hidden focus:before:bg-black dark:text-white dark:hover:before:bg-white dark:focus:before:bg-white" href="mailto:example@site.so">
+                      hello@example.so
+                    </a>
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex gap-4">
+                <svg class="shrink-0 size-5 text-gray-500 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+
+                <div class="grow">
+                  <p class="text-sm text-gray-600 dark:text-neutral-400">
+                    Call us
+                  </p>
+                  <p>
+                    <a class="relative inline-block font-medium text-black before:absolute before:bottom-0.5 before:start-0 before:-z-1 before:w-full before:h-1 before:bg-lime-400 hover:before:bg-black focus:outline-hidden focus:before:bg-black dark:text-white dark:hover:before:bg-white dark:focus:before:bg-white" href="mailto:example@site.so">
+                      +44 222 777-000
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- End Grid -->
+          </div>
+        </div>
+        <!-- End Col -->
+      </div>
+    </div>
+    <!-- End Contact -->
+  </main>
+  <!-- ========== END MAIN CONTENT ========== -->
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="mt-auto border-t md:border-t-0 border-gray-200 dark:border-neutral-700">
+    <div class="w-full max-w-7xl py-10 md:pt-0 px-4 sm:px-6 lg:px-8 mx-auto">
+      <!-- Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 items-center gap-5">
+        <div class="text-center md:text-start">
+          <!-- Logo -->
+          IDEABOX
+          <!-- End Logo -->
+        </div>
+        <!-- End Col -->
+
+        <ul class="text-center">
+          <li class="inline-block relative pe-8 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-3 before:-translate-y-1/2 before:content-['/'] before:text-black dark:before:text-white">
+            <a class="inline-flex gap-x-2 text-sm text-black hover:text-gray-600 dark:text-white dark:hover:text-neutral-300" href="#works">
+              Loyihalar
+            </a>
+          </li>
+          <li class="inline-block relative pe-8 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-3 before:-translate-y-1/2 before:content-['/'] before:text-black dark:before:text-white">
+            <a class="inline-flex gap-x-2 text-sm text-black hover:text-gray-600 dark:text-white dark:hover:text-neutral-300" href="#">
+              Biz haqimizda
+            </a>
+          </li>
+          <!-- <li class="inline-block relative pe-8 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-3 before:-translate-y-1/2 before:content-['/'] before:text-black dark:before:text-white">
+            <a class="inline-flex gap-x-2 text-sm text-black hover:text-gray-600 dark:text-white dark:hover:text-neutral-300" href="#">
+              Blog
+            </a>
+          </li> -->
+        </ul>
+        <!-- End Col -->
+
+        <!-- Social Brands -->
+        <div class="text-center md:text-end space-x-2">
+          <span class="text-sm text-gray-500 dark:text-neutral-400">
+            © 2024 IDEABOX.uz. Barcha huquqlar himoyalangan.
+          </span>
+        </div>
+        <!-- End Social Brands -->
+      </div>
+      <!-- End Grid -->
+    </div>
+  </footer>
+  <!-- ========== END FOOTER ========== -->
+
+  <!-- JS Implementing Plugins -->
+
+  <!-- JS PLUGINS -->
+  <!-- Required plugins -->
+  <script src="https://cdn.jsdelivr.net/npm/preline/dist/index.js"></script>
+
+  </body>
+</html>
