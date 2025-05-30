@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Falsafa tarixiga sayohat</title>
+  
+  <!-- Tailwind CSS  -->
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+   <link rel="stylesheet" href="./css/tailwind.css">
+  
+  <!-- TimelineJS CSS -->
+  <link href="https://cdn.knightlab.com/libs/timeline3/latest/css/timeline.css" rel="stylesheet" />
+  
+  <style>
+    /* Make sure timeline container takes full height */
+    #timeline-embed {
+      height: 80vh;
+      max-height: 800px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 flex flex-col items-center min-h-screen">
+      <header class="flex flex-wrap lg:justify-start lg:flex-nowrap z-50 w-full py-7">
+    <nav
+      class="relative max-w-7xl w-full flex flex-wrap lg:grid lg:grid-cols-12 basis-full items-center px-4 md:px-6 lg:px-8 mx-auto">
+      <div class="lg:col-span-3 flex items-center">
+        <!-- Logo -->
+        <a class="flex-none rounded-xl text-xl inline-block font-semibold focus:outline-hidden focus:opacity-80"
+          href="/" aria-label="Preline">
+          IDEABOX
+        </a>
+        <!-- End Logo -->
+      </div>
+
+      <!-- Collapse -->
+      <div id="hs-navbar-hcail"
+        class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow lg:block lg:w-auto lg:basis-auto lg:order-2 lg:col-span-6"
+        aria-labelledby="hs-navbar-hcail-collapse">
+        <div
+          class="flex flex-col gap-y-4 gap-x-0 mt-5 lg:flex-row lg:justify-center lg:items-center lg:gap-y-0 lg:gap-x-7 lg:mt-0">
+          <div>
+            <a class="relative inline-block text-black focus:outline-hidden before:absolute before:bottom-0.5 before:start-0 before:-z-1 before:w-full before:h-1 before:bg-lime-400 dark:text-white"
+              href="/#works" aria-current="page">Loyihalar</a>
+          </div>
+          <div>
+            <a class="inline-block text-black hover:text-gray-600 focus:outline-hidden focus:text-gray-600 dark:text-white dark:hover:text-neutral-300 dark:focus:text-neutral-300"
+              href="#">Biz haqimizda</a>
+          </div>
+          <!-- <div>
+            <a class="inline-block text-black hover:text-gray-600 focus:outline-hidden focus:text-gray-600 dark:text-white dark:hover:text-neutral-300 dark:focus:text-neutral-300" href="#">About</a>
+          </div>
+          <div>
+            <a class="inline-block text-black hover:text-gray-600 focus:outline-hidden focus:text-gray-600 dark:text-white dark:hover:text-neutral-300 dark:focus:text-neutral-300" href="#">Careers</a>
+          </div>
+          <div>
+            <a class="inline-block text-black hover:text-gray-600 focus:outline-hidden focus:text-gray-600 dark:text-white dark:hover:text-neutral-300 dark:focus:text-neutral-300" href="#">Blog</a> 
+          </div>-->
+        </div>
+      </div>
+      <!-- End Collapse -->
+    </nav>
+  </header>
+
+  <main class="w-full">
+    <div id="timeline-embed"></div>
+  </main>
+
+  <!-- TimelineJS JS -->
+  <script src="https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.js"></script>
+
+  <script>
+    // Timeline data for philosophers
+    const timelineData = {
+        "title": {
+            "media": {
+                "url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/David_-_The_Death_of_Socrates.jpg",
+                "caption": "Falsafa Tarixi",
+                "credit": "Wikimedia Commons"
+            },
+            "text": {
+                "headline": "Asrlar davomida falsafa",
+                "text": "Qadimgi davrlardan zamonaviy g‘oyalargacha bo‘lgan asosiy faylasuflar va g‘oyalarni o‘rganing."
+            }
+        },
+        "events": [
+            {
+                "media": {
+                    "url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Socrate_du_Louvre.jpg",
+                    "caption": "Suqrot",
+                    "credit": "Wikimedia Commons"
+                },
+                "start_date": { "year": "-469" },
+                "end_date": { "year": "-399" },
+                "text": {
+                    "headline": "Suqrot",
+                    "text": "Qadimgi yunon faylasufi, G‘arb falsafasining asoschilaridan biri sifatida tanilgan."
+                }
+            },
+            {
+                "media": {
+                    "url": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Platon-2b.jpg",
+                    "caption": "Aflotun",
+                    "credit": "Wikimedia Commons"
+                },
+                "start_date": { "year": "-427" },
+                "end_date": { "year": "-347" },
+                "text": {
+                    "headline": "Aflotun",
+                    "text": "Suqrotning shogirdi, Akademiya asoschisi va falsafiy dialoglar muallifi."
+                }
+            },
+            {
+                "media": {
+                    "url": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Aristoteles_Louvre.jpg",
+                    "caption": "Arastu",
+                    "credit": "Wikimedia Commons"
+                },
+                "start_date": { "year": "-384" },
+                "end_date": { "year": "-322" },
+                "text": {
+                    "headline": "Arastu",
+                    "text": "Aflotunning shogirdi, mantiq, metafizika, etika va tabiiy fanlarga katta hissa qo‘shgan yunon faylasufi."
+                }
+            },
+            {
+                "media": {
+                    "url": "https://upload.wikimedia.org/wikipedia/uz/8/88/Avicena.jpg",
+                    "caption": "Ibn Sino",
+                    "credit": "Wikimedia"
+                },
+                "start_date": { "year": "980" },
+                "end_date": { "year": "1037" },
+                "text": {
+                    "headline": "Ibn Sino",
+                    "text": "Fors olimi va faylasufi, Islom Oltin davri va o‘rta asr falsafasida muhim o‘rin tutgan."
+                }
+            },
+            {
+                "media": {
+                    "url": "https://upload.wikimedia.org/wikipedia/commons/7/73/Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg",
+                    "caption": "Rene Dekart",
+                    "credit": "Wikimedia Commons"
+                },
+                "start_date": { "year": "1596" },
+                "end_date": { "year": "1650" },
+                "text": {
+                    "headline": "Rene Dekart",
+                    "text": "Fransuz faylasufi va matematik, zamonaviy falsafaning otasi deb ataladi."
+                }
+            },
+            {
+                "media": {
+                    "url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/FWNietzscheSiebe.jpg",
+                    "caption": "Fridrix Nitsshe",
+                    "credit": "Wikimedia Commons"
+                },
+                "start_date": { "year": "1844" },
+                "end_date": { "year": "1900" },
+                "text": {
+                    "headline": "Fridrix Nitsshe",
+                    "text": "Axloq va dinni tanqid qilgan, Übermensch konsepsiyasi bilan mashhur nemis faylasufi."
+                }
+            }
+        ]
+    };
+
+    // Initialize TimelineJS
+    document.addEventListener("DOMContentLoaded", () => {
+      const timeline = new TL.Timeline('timeline-embed', timelineData, {
+        language: 'uz',
+        initial_zoom: 3,
+        timenav_position: 'bottom',
+        scale_factor: 1,
+        hash_bookmark: true
+      });
+    });
+  </script>
+
+</body>
+</html>

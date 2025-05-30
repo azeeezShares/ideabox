@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Falsafiy Memory O'yini</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .card {
+      perspective: 1000px;
+      cursor: pointer;
+    }
+    .card-inner {
+      transition: transform 0.5s;
+      transform-style: preserve-3d;
+      position: relative;
+      width: 100%;
+      padding-top: 100%; /* Square ratio */
+    }
+    .card.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+    .card-front,
+    .card-back {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      backface-visibility: hidden;
+      border-radius: 0.75rem; /* rounded-2xl */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 1.25rem;
+      padding: 1rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .card-front {
+      background-color: #a3e635; /* lime-400 */
+      color: white;
+    }
+    .card-back {
+      background-color: #f3f4f6; /* gray-100 */
+      color: #374151; /* gray-700 */
+      transform: rotateY(180deg);
+      text-align: center;
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+
+    <header class="flex flex-wrap lg:justify-start lg:flex-nowrap z-50 w-full py-7">
+    <nav
+      class="relative max-w-7xl w-full flex flex-wrap lg:grid lg:grid-cols-12 basis-full items-center px-4 md:px-6 lg:px-8 mx-auto">
+      <div class="lg:col-span-3 flex items-center">
+        <!-- Logo -->
+        <a class="flex-none rounded-xl text-xl inline-block font-semibold focus:outline-hidden focus:opacity-80"
+          href="/" aria-label="Preline">
+          IDEABOX
+        </a>
+        <!-- End Logo -->
+      </div>
+
+      <!-- Collapse -->
+      <div id="hs-navbar-hcail"
+        class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow lg:block lg:w-auto lg:basis-auto lg:order-2 lg:col-span-6"
+        aria-labelledby="hs-navbar-hcail-collapse">
+        <div
+          class="flex flex-col gap-y-4 gap-x-0 mt-5 lg:flex-row lg:justify-center lg:items-center lg:gap-y-0 lg:gap-x-7 lg:mt-0">
+          <div>
+            <a class="relative inline-block text-black focus:outline-hidden before:absolute before:bottom-0.5 before:start-0 before:-z-1 before:w-full before:h-1 before:bg-lime-400 dark:text-white"
+              href="/#works" aria-current="page">Loyihalar</a>
+          </div>
+          <div>
+            <a class="inline-block text-black hover:text-gray-600 focus:outline-hidden focus:text-gray-600 dark:text-white dark:hover:text-neutral-300 dark:focus:text-neutral-300"
+              href="#">Biz haqimizda</a>
+          </div>
+          <!-- <div>
+            <a class="inline-block text-black hover:text-gray-600 focus:outline-hidden focus:text-gray-600 dark:text-white dark:hover:text-neutral-300 dark:focus:text-neutral-300" href="#">About</a>
+          </div>
+          <div>
+            <a class="inline-block text-black hover:text-gray-600 focus:outline-hidden focus:text-gray-600 dark:text-white dark:hover:text-neutral-300 dark:focus:text-neutral-300" href="#">Careers</a>
+          </div>
+          <div>
+            <a class="inline-block text-black hover:text-gray-600 focus:outline-hidden focus:text-gray-600 dark:text-white dark:hover:text-neutral-300 dark:focus:text-neutral-300" href="#">Blog</a> 
+          </div>-->
+        </div>
+      </div>
+      <!-- End Collapse -->
+    </nav>
+  </header>
+
+  <div class="bg-gray-50 dark:bg-neutral-900 min-h-screen flex flex-col items-center justify-center p-4">
+    <h1 class="text-3xl font-bold mb-6 text-gray-900 dark:text-white">Falsafiy Memory O'yini</h1>
+      <div id="game" class="grid grid-cols-4 gap-4 max-w-xl w-full"></div>
+
+      <div class="mt-6 text-gray-700 dark:text-neutral-300">
+        <p>Harakatlar soni: <span id="moves">0</span></p>
+      </div>
+
+      <div id="message" class="mt-4 p-4 bg-lime-400 text-white rounded-lg max-w-xl text-center hidden"></div>
+  </div>
+  
+
+  <script>
+    const cardsData = [
+      { front: "Sokrat", back: "Falsafaning otasi. ‘Bilaman, hech narsani bilmayman’ degan." },
+      { front: "Platon", back: "G‘or allegoriyasi bilan mashhur bo‘lgan faylasuf." },
+      { front: "Aristotel", back: "Mantiq va empirik bilimlarni rivojlantirgan." },
+      { front: "Donolik", back: "Haqiqiy bilim va to‘g‘ri fikrlash." },
+      { front: "Etika", back: "Axloq va to‘g‘ri xulq haqidagi falsafa." },
+      { front: "Metafizika", back: "Haqqoniyat va mavjudlik asoslarini o‘rganadi." },
+      { front: "Diyalog", back: "Falsafiy muloqot shakli, Sokrat usuli." },
+      { front: "Rasionallik", back: "Aql bilan fikrlash va qaror qabul qilish." },
+    ];
+
+    // Duplicate cards and shuffle
+    let gameCards = [...cardsData, ...cardsData]
+      .map(card => ({ ...card, id: crypto.randomUUID() }))
+      .sort(() => Math.random() - 0.5);
+
+    const gameContainer = document.getElementById("game");
+    const movesCounter = document.getElementById("moves");
+    const messageBox = document.getElementById("message");
+
+    let flippedCards = [];
+    let matchedCount = 0;
+    let moves = 0;
+    let lockBoard = false;
+
+    function createCard(card) {
+      const cardEl = document.createElement("div");
+      cardEl.classList.add("card");
+      cardEl.dataset.id = card.id;
+
+      cardEl.innerHTML = `
+        <div class="card-inner rounded-2xl">
+          <div class="card-front">${card.front}</div>
+          <div class="card-back">${card.back}</div>
+        </div>
+      `;
+
+      cardEl.addEventListener("click", () => {
+        if (lockBoard) return;
+        if (flippedCards.length === 2) return;
+        if (flippedCards.find(c => c.dataset.id === cardEl.dataset.id)) return;
+
+        flipCard(cardEl);
+      });
+
+      return cardEl;
+    }
+
+    function flipCard(card) {
+      card.classList.add("flipped");
+      flippedCards.push(card);
+
+      if (flippedCards.length === 2) {
+        moves++;
+        movesCounter.textContent = moves;
+        checkMatch();
+      }
+    }
+
+    function checkMatch() {
+      const [card1, card2] = flippedCards;
+      const card1Data = gameCards.find(c => c.id === card1.dataset.id);
+      const card2Data = gameCards.find(c => c.id === card2.dataset.id);
+
+      if (card1Data.front === card2Data.front) {
+        matchedCount++;
+        showMessage(`To‘g‘ri! “${card1Data.front}”: ${card1Data.back}`);
+
+        flippedCards = [];
+        if (matchedCount === cardsData.length) {
+          setTimeout(() => alert(`Tabriklaymiz! O'yinni ${moves} harakatda yakunladingiz.`), 300);
+        }
+      } else {
+        lockBoard = true;
+        setTimeout(() => {
+          card1.classList.remove("flipped");
+          card2.classList.remove("flipped");
+          flippedCards = [];
+          lockBoard = false;
+        }, 1000);
+      }
+    }
+
+    function showMessage(text) {
+      messageBox.textContent = text;
+      messageBox.classList.remove("hidden");
+      clearTimeout(messageBox._timeout);
+      messageBox._timeout = setTimeout(() => {
+        messageBox.classList.add("hidden");
+      }, 3000);
+    }
+
+    // Initialize game
+    gameCards.forEach(card => {
+      const cardEl = createCard(card);
+      gameContainer.appendChild(cardEl);
+    });
+  </script>
+</body>
+</html>

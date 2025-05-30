@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donolik Bahsi</title>
+  <script defer src="./js/game4.js"></script>
+   <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+  <div class="max-w-xl mx-auto py-10">
+    <h1 class="text-3xl font-bold text-center mb-6">Donolik Bahsi</h1>
+    <div id="game" class="bg-white p-6 rounded-xl shadow-md">
+      <div id="intro">
+        <label class="block mb-2">Faylasufni tanlang:</label>
+        <select id="philosopherSelect" class="w-full mb-4 p-2 border rounded">
+          <option value="socrates">Sokrat</option>
+          <option value="plato">Platon</option>
+          <option value="aristotle">Aristotel</option>
+        </select>
+        <button onclick="startGame()" class="bg-lime-500 text-white px-4 py-2 rounded hover:bg-lime-600">Boshlash</button>
+      </div>
+      <div id="debate" class="hidden">
+        <p id="question" class="font-semibold mb-4"></p>
+        <div id="options" class="space-y-2"></div>
+        <p id="feedback" class="mt-4 text-green-600 font-medium"></p>
+        <button onclick="nextQuestion()" id="nextBtn" class="hidden mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Keyingi</button>
+      </div>
+      <div id="result" class="hidden">
+        <p class="text-xl font-semibold">Bahs yakunlandi!</p>
+        <p id="finalScore" class="mt-2"></p>
+        <button onclick="restartGame()" class="mt-4 bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-800">Qayta boshlash</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
