@@ -1,75 +1,177 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uz">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Philosophy Learning Gallery</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Falsafiy Iqtiboslar O'yini</title>
     <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    .modal {
-      display: none;
-    }
-    .modal.active {
-      display: flex;
-    }
-  </style>
+    <style>
+        .draggable {
+            cursor: grab;
+        }
+
+        .droppable {
+            min-height: 2rem;
+        }
+    </style>
 </head>
-<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white">
-  <div class="container mx-auto px-4 py-10">
-    <h1 class="text-3xl font-bold mb-8 text-center">Gamifikatsiya: Falsafa Ta'limida Yangi Yondashuv</h1>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <!-- Card 1 -->
-      <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
-        <h2 class="text-xl font-semibold mb-2">🎯 Ichki motivatsiyani kuchaytirish</h2>
-        <p class="mb-2">Gamifikatsiya orqali talabalarda ichki ehtiyojlar (tan olinishi, yutuq hissi, erkin tanlov, muammolarni hal qilish) qondiriladi.</p>
-        <ul class="list-disc list-inside text-sm text-gray-600 dark:text-gray-300">
-          <li>Har bir bosqichdan o‘tgan talabada o‘zini qoniqtirish hissi paydo bo‘ladi.</li>
-          <li>Reytingda yuqori o‘rin egallash talabaning o‘zini qadrlashiga sabab bo‘ladi.</li>
-        </ul>
-      </div>
+<body>
+    <header class="flex flex-wrap lg:justify-start lg:flex-nowrap z-50 w-full py-7">
+        <nav
+            class="relative max-w-7xl w-full flex flex-wrap lg:grid lg:grid-cols-12 basis-full items-center px-4 md:px-6 lg:px-8 mx-auto">
+            <div class="lg:col-span-3 flex items-center">
+                <!-- Logo -->
+                <a class="flex-none rounded-xl text-xl inline-block font-semibold focus:outline-hidden focus:opacity-80"
+                    href="/" aria-label="Preline">
+                    IDEABOX
+                </a>
+                <!-- End Logo -->
+            </div>
 
-      <!-- Card 2 -->
-      <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
-        <h2 class="text-xl font-semibold mb-2">🧲 Tashqi motivatsiyani oshirish</h2>
-        <p class="mb-2">Ballar, medallar, yulduzchalar, sertifikatlar tashqi motivator bo‘lib xizmat qiladi. Raqobatni kuchaytiradi.</p>
-        <p class="text-sm text-gray-600 dark:text-gray-300">Misol: “Eng faol faylasuf” unvoni uchun kurash, 100 ball to‘plagan talabaga diplom.</p>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
-        <h2 class="text-xl font-semibold mb-2">🤝 Ijtimoiy motivatsiya va hamkorlik</h2>
-        <p class="mb-2">Jamoaviy o‘yinlar, guruh topshiriqlari talabalarni hamkorlikka undaydi.</p>
-        <p class="text-sm text-gray-600 dark:text-gray-300">Misol: “Sokrat tribunalida” rollar taqsimlanadi – dalil keltiruvchi, rad qiluvchi, savol beruvchi.</p>
-      </div>
-
-      <!-- Card 4 -->
-      <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
-        <h2 class="text-xl font-semibold mb-2">🧠 Faollik va darsga jalb etish</h2>
-        <p class="mb-2">Gamifikatsiya darsni interaktiv jarayonga aylantiradi. Talaba faol qatnashadi, e’tiborli bo‘ladi.</p>
-        <p class="text-sm text-gray-600 dark:text-gray-300">Misol: “Platon g‘oyalar labirinti” – har to‘g‘ri javobda bir qadam oldinga yuriladi.</p>
-      </div>
-
-      <!-- Card 5 -->
-      <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
-        <h2 class="text-xl font-semibold mb-2">📈 Uzoq muddatli eslab qolish</h2>
-        <p class="mb-2">O‘yin orqali o‘rganilgan bilimlar ko‘proq sezgilarni faollashtiradi, xotirada mustahkamlanadi.</p>
-      </div>
-
-      <!-- Card 6 -->
-      <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
-        <h2 class="text-xl font-semibold mb-2">📊 Tadqiqot natijalari</h2>
-        <ul class="list-disc list-inside text-sm text-gray-600 dark:text-gray-300">
-          <li>2020-yil Oksford universiteti tadqiqoti: motivatsiya 34% ga oshgan.</li>
-          <li>D. Pink nazariyasi: avtonomiya, mahorat va maqsad – bular gamifikatsiya orqali beriladi.</li>
-        </ul>
-      </div>
+            <!-- Collapse -->
+            <div id="hs-navbar-hcail"
+                class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow lg:block lg:w-auto lg:basis-auto lg:order-2 lg:col-span-6"
+                aria-labelledby="hs-navbar-hcail-collapse">
+                <div
+                    class="flex flex-col gap-y-4 gap-x-0 mt-5 lg:flex-row lg:justify-center lg:items-center lg:gap-y-0 lg:gap-x-7 lg:mt-0">
+                    <div>
+                        <a class="relative inline-block text-black focus:outline-hidden before:absolute before:bottom-0.5 before:start-0 before:-z-1 before:w-full before:h-1 before:bg-lime-400 dark:text-white"
+                            href="/#works" aria-current="page">Loyihalar</a>
+                    </div>
+                    <div>
+                        <a class="inline-block text-black hover:text-gray-600 focus:outline-hidden focus:text-gray-600 dark:text-white dark:hover:text-neutral-300 dark:focus:text-neutral-300"
+                            href="#">Biz haqimizda</a>
+                    </div>
+                    <!-- <div>
+            <a class="inline-block text-black hover:text-gray-600 focus:outline-hidden focus:text-gray-600 dark:text-white dark:hover:text-neutral-300 dark:focus:text-neutral-300" href="#">About</a>
+          </div>
+          <div>
+            <a class="inline-block text-black hover:text-gray-600 focus:outline-hidden focus:text-gray-600 dark:text-white dark:hover:text-neutral-300 dark:focus:text-neutral-300" href="#">Careers</a>
+          </div>
+          <div>
+            <a class="inline-block text-black hover:text-gray-600 focus:outline-hidden focus:text-gray-600 dark:text-white dark:hover:text-neutral-300 dark:focus:text-neutral-300" href="#">Blog</a> 
+          </div>-->
+                </div>
+            </div>
+            <!-- End Collapse -->
+        </nav>
+    </header>
+    <div class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-6">
+        <div class="max-w-xl w-full bg-white shadow-xl rounded-2xl p-8">
+            <h1 class="text-3xl font-bold text-center mb-6">Falsafiy Iqtibosni To‘ldiring</h1>
+            <div id="quote-container" class="text-lg font-medium text-gray-700 mb-4"></div>
+            <div class="flex flex-wrap gap-2 mb-4" id="options"></div>
+            <div class="droppable w-full border-dashed border-2 border-blue-400 rounded-xl p-4 text-center text-gray-500"
+                id="drop-zone">
+                So‘zni bu yerga torting...
+            </div>
+            <button onclick="checkAnswer()"
+                class="mt-4 w-full bg-blue-600 text-white py-2 rounded-xl hover:bg-blue-700 transition">
+                Javobni tekshirish
+            </button>
+            <div id="feedback" class="mt-4 text-center text-lg"></div>
+            <button onclick="nextQuote()"
+                class="mt-4 w-full bg-green-600 text-white py-2 rounded-xl hover:bg-green-700 transition">
+                Keyingi iqtibos
+            </button>
+        </div>
     </div>
+    <script>
+        const quotes = [
+            {
+                quote: "Men faqat bitta narsani bilaman: bu ...",
+                answer: "hech narsani bilmasligim",
+                options: ["hech narsani bilmasligim", "hamma narsani bilishim", "o‘ylashim", "bilmasligim mumkin"]
+            },
+            {
+                quote: "Odam — bu barcha narsaning ..., mavjud bo‘lgan narsaning mavjudligi uchun ham",
+                answer: "o‘lchovi",
+                options: ["qoidasi", "o‘lchovi", "dushmani", "maqsadi"]
+            },
+            {
+                quote: "Falsafa — bu hayratdan boshlanadi va ... bilan tugaydi",
+                answer: "tushunish",
+                options: ["rad etish", "savol", "tushunish", "sinov"]
+            },
+            {
+                quote: "Bo‘lish yoki ..., mana masala",
+                answer: "bo‘lmaslik",
+                options: ["ketish", "bo‘lmaslik", "sabrlilik", "yo‘qotish"]
+            },
+            {
+                quote: "Kimki o‘zini bilsa, u ... ham biladi",
+                answer: "xudoni",
+                options: ["ilmni", "xudoni", "odamni", "haqiqatni"]
+            }
+        ];
 
-    <div class="mt-10 text-center">
-      <p class="text-lg font-semibold">Gamifikatsiya – bu raqobat, qiziqish, va mustahkam bilim asosidir.</p>
-      <p class="text-gray-600 dark:text-gray-400 mt-2">Agar xohlasangiz, aynan antik falsafa uchun moslashtirilgan gamifikatsion topshiriqlarni ham ishlab chiqamiz.</p>
-    </div>
-  </div>
+        let current = 0;
+
+        function loadQuote() {
+            const q = quotes[current];
+            document.getElementById('quote-container').textContent = q.quote;
+            document.getElementById('drop-zone').textContent = 'So‘zni bu yerga torting...';
+            document.getElementById('feedback').textContent = '';
+
+            const optionsContainer = document.getElementById('options');
+            optionsContainer.innerHTML = '';
+
+            q.options.sort(() => Math.random() - 0.5).forEach(option => {
+                const span = document.createElement('span');
+                span.textContent = option;
+                span.className = 'draggable bg-blue-100 px-4 py-2 rounded-xl text-gray-700 shadow cursor-pointer';
+                span.setAttribute('draggable', 'true');
+
+                span.addEventListener('dragstart', e => {
+                    e.dataTransfer.setData('text/plain', option);
+                });
+
+                optionsContainer.appendChild(span);
+            });
+        }
+
+        const dropZone = document.getElementById('drop-zone');
+        dropZone.addEventListener('dragover', e => {
+            e.preventDefault();
+            dropZone.classList.add('bg-blue-50');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('bg-blue-50');
+        });
+
+        dropZone.addEventListener('drop', e => {
+            e.preventDefault();
+            const data = e.dataTransfer.getData('text/plain');
+            dropZone.textContent = data;
+            dropZone.classList.remove('bg-blue-50');
+        });
+
+        function checkAnswer() {
+            const userAnswer = dropZone.textContent.trim().toLowerCase();
+            const correct = quotes[current].answer.toLowerCase();
+            const feedback = document.getElementById('feedback');
+
+            if (userAnswer === correct) {
+                feedback.textContent = '✅ To‘g‘ri javob!';
+                feedback.classList.remove('text-red-600');
+                feedback.classList.add('text-green-600');
+            } else {
+                feedback.textContent = `❌ Noto‘g‘ri. To‘g‘ri javob: "${quotes[current].answer}"`;
+                feedback.classList.remove('text-green-600');
+                feedback.classList.add('text-red-600');
+            }
+        }
+
+        function nextQuote() {
+            current = (current + 1) % quotes.length;
+            loadQuote();
+        }
+
+        loadQuote();
+    </script>
 </body>
+
 </html>
