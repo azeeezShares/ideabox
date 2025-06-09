@@ -1,161 +1,166 @@
 const allQuestions = {
   easy: [
-    { question: "Sokrat kim edi?", answers: [
+    { question: "Sokrat kim edi?", answers: shuffleAnswers([
       { text: "Faylasuf", correct: true },
       { text: "Rassom", correct: false },
       { text: "Shoir", correct: false },
-    ]},
-    { question: "Platonning mashhur asari?", answers: [
+    ])},
+    { question: "Platonning mashhur asari?", answers: shuffleAnswers([
       { text: "Respublika", correct: true },
       { text: "Fizika", correct: false },
       { text: "Etika", correct: false },
-    ]},
-    { question: "Falsafa nima?", answers: [
+    ])},
+    { question: "Falsafa nima?", answers: shuffleAnswers([
       { text: "Haqiqatga intilish", correct: true },
       { text: "Sport turi", correct: false },
       { text: "Matematika turi", correct: false },
-    ]},
-    { question: "Aristotel kim?", answers: [
+    ])},
+    { question: "Aristotel kim?", answers: shuffleAnswers([
       { text: "Faylasuf", correct: true },
       { text: "Shifokor", correct: false },
       { text: "Harbiy", correct: false },
-    ]},
-    { question: "Sokrat qanday uslub bilan mashhur?", answers: [
+    ])},
+    { question: "Sokrat qanday uslub bilan mashhur?", answers: shuffleAnswers([
       { text: "Suhbat (dialektika)", correct: true },
       { text: "She’r yozish", correct: false },
       { text: "Musobaqa", correct: false },
-    ]},
-    { question: "Platon qayerda tahsil olgan?", answers: [
+    ])},
+    { question: "Platon qayerda tahsil olgan?", answers: shuffleAnswers([
       { text: "Sokrat maktabida", correct: true },
       { text: "Aristotel maktabida", correct: false },
       { text: "Afina universitetida", correct: false },
-    ]},
-    { question: "Falsafa qaysi til so‘zidan olingan?", answers: [
+    ])},
+    { question: "Falsafa qaysi til so‘zidan olingan?", answers: shuffleAnswers([
       { text: "Yunoncha", correct: true },
       { text: "Lotincha", correct: false },
       { text: "Arabcha", correct: false },
-    ]},
-    { question: "Sokrat qanday savollar berardi?", answers: [
+    ])},
+    { question: "Sokrat qanday savollar berardi?", answers: shuffleAnswers([
       { text: "Ochuvchi va tanqidiy", correct: true },
       { text: "Tasodifiy", correct: false },
       { text: "Oson", correct: false },
-    ]},
-    { question: "Platon kimning shogirdi?", answers: [
+    ])},
+    { question: "Platon kimning shogirdi?", answers: shuffleAnswers([
       { text: "Sokrat", correct: true },
       { text: "Aristotel", correct: false },
       { text: "Demokrit", correct: false },
-    ]},
-    { question: "Aristotel kimning shogirdi?", answers: [
+    ])},
+    { question: "Aristotel kimning shogirdi?", answers: shuffleAnswers([
       { text: "Platon", correct: true },
       { text: "Sokrat", correct: false },
       { text: "Pifagor", correct: false },
-    ]},
+    ])},
   ],
   medium: [
-    { question: "Aristotel qanday ilmiy uslubni targ‘ib qilgan?", answers: [
+    { question: "Aristotel qanday ilmiy uslubni targ‘ib qilgan?", answers: shuffleAnswers([
       { text: "Tajriba", correct: true },
       { text: "Tasodif", correct: false },
       { text: "Mifologiya", correct: false },
-    ]},
-    { question: "Platonning 'Respublika' asarida ideal jamiyat asosida nima yotadi?", answers: [
+    ])},
+    { question: "Platonning 'Respublika' asarida ideal jamiyat asosida nima yotadi?", answers: shuffleAnswers([
       { text: "Adolat", correct: true },
       { text: "Boylik", correct: false },
       { text: "Erkinlik", correct: false },
-    ]},
-    { question: "Sokrat qanday o‘lim topgan?", answers: [
+    ])},
+    { question: "Sokrat qanday o‘lim topgan?", answers: shuffleAnswers([
       { text: "Zahar ichib", correct: true },
       { text: "Qilich bilan", correct: false },
       { text: "Tabiiy o‘lim", correct: false },
-    ]},
-    { question: "Platon 'shakllar nazariyasi'ni kim orqali ilgari surgan?", answers: [
+    ])},
+    { question: "Platon 'shakllar nazariyasi'ni kim orqali ilgari surgan?", answers: shuffleAnswers([
       { text: "O‘zi", correct: true },
       { text: "Aristotel", correct: false },
       { text: "Sokrat", correct: false },
-    ]},
-    { question: "Sokrat qanday falsafiy metodni qo‘llagan?", answers: [
+    ])},
+    { question: "Sokrat qanday falsafiy metodni qo‘llagan?", answers: shuffleAnswers([
       { text: "Mayevtika (savollar orqali haqiqatga yetishish)", correct: true },
       { text: "Eksperiment", correct: false },
       { text: "Yozma traktat", correct: false },
-    ]},
-    { question: "Platonning akademiyasi qayerda joylashgan edi?", answers: [
+    ])},
+    { question: "Platonning akademiyasi qayerda joylashgan edi?", answers: shuffleAnswers([
       { text: "Afina", correct: true },
       { text: "Rim", correct: false },
       { text: "Iskandariya", correct: false },
-    ]},
-    { question: "Aristotel qaysi shohning ustozi bo‘lgan?", answers: [
+    ])},
+    { question: "Aristotel qaysi shohning ustozi bo‘lgan?", answers: shuffleAnswers([
       { text: "Aleksandr Makedonskiy", correct: true },
       { text: "Yuliy Tsezar", correct: false },
       { text: "Napoleon", correct: false },
-    ]},
-    { question: "Platon qanday jamiyatni tanqid qilgan?", answers: [
+    ])},
+    { question: "Platon qanday jamiyatni tanqid qilgan?", answers: shuffleAnswers([
       { text: "Demokratik", correct: true },
       { text: "Ilohiy", correct: false },
       { text: "Fashistik", correct: false },
-    ]},
-    { question: "Sokrat qanday yozma asarlar qoldirgan?", answers: [
+    ])},
+    { question: "Sokrat qanday yozma asarlar qoldirgan?", answers: shuffleAnswers([
       { text: "Hech qanday", correct: true },
       { text: "Dialoglar", correct: false },
       { text: "Poemalar", correct: false },
-    ]},
-    { question: "Aristotel falsafaning nechta asosiy turini belgilagan?", answers: [
+    ])},
+    { question: "Aristotel falsafaning nechta asosiy turini belgilagan?", answers: shuffleAnswers([
       { text: "3 ta", correct: true },
       { text: "2 ta", correct: false },
       { text: "4 ta", correct: false },
-    ]},
+    ])},
   ],
   hard: [
-    { question: "Platonning shakllar nazariyasiga ko‘ra, haqiqiy haqiqat qayerda mavjud?", answers: [
+    { question: "Platonning shakllar nazariyasiga ko‘ra, haqiqiy haqiqat qayerda mavjud?", answers: shuffleAnswers([
       { text: "G‘oya dunyosida", correct: true },
       { text: "Material dunyoda", correct: false },
       { text: "Inson fikrida", correct: false },
-    ]},
-    { question: "Aristotelning 'Entelixiya' tushunchasi nimani anglatadi?", answers: [
+    ])},
+    { question: "Aristotelning 'Entelixiya' tushunchasi nimani anglatadi?", answers: shuffleAnswers([
       { text: "Ichki maqsad", correct: true },
       { text: "Tasodifiy hodisa", correct: false },
       { text: "Geometrik shakl", correct: false },
-    ]},
-    { question: "Platon 'grott' allegoriyasi bilan nimani ifodalaydi?", answers: [
+    ])},
+    { question: "Platon 'grott' allegoriyasi bilan nimani ifodalaydi?", answers: shuffleAnswers([
       { text: "Bilimga erishish yo‘li", correct: true },
       { text: "Yurak xatti-harakatlari", correct: false },
       { text: "Urush va tinchlik", correct: false },
-    ]},
-    { question: "Aristotel qanday fanlarni asos solgan?", answers: [
+    ])},
+    { question: "Aristotel qanday fanlarni asos solgan?", answers: shuffleAnswers([
       { text: "Biologiya va logika", correct: true },
       { text: "Astronomiya va poetika", correct: false },
       { text: "Tarix va musiqa", correct: false },
-    ]},
-    { question: "Sokratning asosiy maqsadi nima edi?", answers: [
+    ])},
+    { question: "Sokratning asosiy maqsadi nima edi?", answers: shuffleAnswers([
       { text: "Axloqiy tushunchalarni aniqlash", correct: true },
       { text: "Siyosiy tizim yaratish", correct: false },
       { text: "Yangi din asoslash", correct: false },
-    ]},
-    { question: "Platon qanday ta’lim metodologiyasini qo‘llagan?", answers: [
+    ])},
+    { question: "Platon qanday ta’lim metodologiyasini qo‘llagan?", answers: shuffleAnswers([
       { text: "Dialogik uslub", correct: true },
       { text: "Ma’ruza", correct: false },
       { text: "Eksperiment", correct: false },
-    ]},
-    { question: "Aristotelning metafizikasi qaysi tushunchaga asoslangan?", answers: [
+    ])},
+    { question: "Aristotelning metafizikasi qaysi tushunchaga asoslangan?", answers: shuffleAnswers([
       { text: "Oqibatli sabab", correct: true },
       { text: "Nafs", correct: false },
       { text: "Qismat", correct: false },
-    ]},
-    { question: "Sokrat nimani 'bilim' deb hisoblagan?", answers: [
+    ])},
+    { question: "Sokrat nimani 'bilim' deb hisoblagan?", answers: shuffleAnswers([
       { text: "O‘z bilmasligini anglash", correct: true },
       { text: "Kitob o‘qish", correct: false },
       { text: "O‘rgatish", correct: false },
-    ]},
-    { question: "Platon nazariyasiga ko‘ra, ruhning necha qismi bor?", answers: [
+    ])},
+    { question: "Platon nazariyasiga ko‘ra, ruhning necha qismi bor?", answers: shuffleAnswers([
       { text: "Uchta: aql, g‘azab, xohish", correct: true },
       { text: "Ikki: qalb va nafs", correct: false },
       { text: "To‘rtta: ong, hissiyot, jism, ruh", correct: false },
-    ]},
-    { question: "Aristotel fikricha, insonning eng oliy maqsadi nima?", answers: [
+    ])},
+    { question: "Aristotel fikricha, insonning eng oliy maqsadi nima?", answers: shuffleAnswers([
       { text: "Baxt (evdaimoniya)", correct: true },
       { text: "Hokimiyat", correct: false },
       { text: "Boylik", correct: false },
-    ]},
+    ])},
   ]
 };
+
+// Helper to randomize answers for each question
+function shuffleAnswers(answers) {
+  return answers.sort(() => Math.random() - 0.5);
+}
 
 
 let currentQuestion = 0;
