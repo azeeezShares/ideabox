@@ -79,16 +79,11 @@
         </div>
     </div>
     <script>
-        const quotes = [
+        let quotes = [
             {
                 quote: "Men faqat bitta narsani bilaman: bu ...",
                 answer: "hech narsani bilmasligim",
                 options: ["hech narsani bilmasligim", "hamma narsani bilishim", "o‘ylashim", "bilmasligim mumkin"]
-            },
-            {
-                quote: "Odam — bu barcha narsaning ..., mavjud bo‘lgan narsaning mavjudligi uchun ham",
-                answer: "o‘lchovi",
-                options: ["qoidasi", "o‘lchovi", "dushmani", "maqsadi"]
             },
             {
                 quote: "Falsafa — bu hayratdan boshlanadi va ... bilan tugaydi",
@@ -104,8 +99,67 @@
                 quote: "Kimki o‘zini bilsa, u ... ham biladi",
                 answer: "xudoni",
                 options: ["ilmni", "xudoni", "odamni", "haqiqatni"]
+            },
+            {
+                quote: "Pragmatizm ... nuqtayi nazaridan narsalarni baholaydi",
+                answer: "amaliylik",
+                options: ["estetik", "amaliylik", "diniy", "mantiqiy"]
+            },
+            {
+                quote: "Homo Economicus tushunchasi falsafada ... insonni anglatadi",
+                answer: "iqtisodiy",
+                options: ["ma‘naviy", "iqtisodiy", "diniy", "siyosiy"]
+            },
+            {
+                quote: "Mifologiya ... shakllaridan biridir",
+                answer: "ijtimoiy ong",
+                options: ["ilmiy bilim", "ijtimoiy ong", "siyosiy tuzum", "axloqiy norma"]
+            },
+            {
+                quote: "Ontologiya falsafada ... haqidagi ta‘limotdir",
+                answer: "borliq",
+                options: ["bilish", "borliq", "axloq", "estetika"]
+            },
+            {
+                quote: "Gnoseologiya ... jarayonini o‘rganadi",
+                answer: "bilish",
+                options: ["borliq", "bilish", "tafakkur", "ma‘naviyat"]
+            },
+            {
+                quote: "Falsafa ... orqali dunyoni tushuntiradi",
+                answer: "aql va bilim",
+                options: ["e‘tiqod va his", "aql va bilim", "mif va din", "tajriba va sezgi"]
+            },
+            {
+                quote: "Pifagor falsafaga ... deb nom bergan birinchi donishmanddir",
+                answer: "falsafa",
+                options: ["mifologiya", "falsafa", "ontologiya", "gnoseologiya"]
+            },
+            {
+                quote: "Islomda ... muqaddas kitob hisoblanadi",
+                answer: "Qur‘on",
+                options: ["Tavrot", "Zabur", "Qur‘on", "Injil"]
+            },
+            {
+                quote: "Falsafiy antropologiya ... falsafasini o‘rganadi",
+                answer: "inson",
+                options: ["jamiyat", "inson", "tabiat", "din"]
+            },
+            {
+                quote: "Tolerantlik ... munosabatlarni mustahkamlaydi",
+                answer: "millatlararo",
+                options: ["iqtisodiy", "millatlararo", "siyosiy", "ma‘naviy"]
             }
         ];
+
+        // Shuffle quotes array every time page loads
+        function shuffleQuotes(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+        }
+        shuffleQuotes(quotes);
 
         let current = 0;
 
