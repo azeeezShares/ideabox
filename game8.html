@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G'arb va Sharq Faylasuflari</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        #map {
+            height: calc(100vh - 280px);
+            z-index: 10;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        
+        .timeline-container {
+            height: 140px;
+            background: linear-gradient(to right, #1a365d, #2a4365);
+            padding: 12px;
+            overflow-x: auto;
+            position: relative;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        
+        .timeline {
+            display: flex;
+            height: 100%;
+            gap: 15px;
+            padding: 0 20px;
+        }
+        
+        .period {
+            width: 140px;
+            height: 100%;
+            background: #2d3748;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+        
+        .period:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        
+        .period.active {
+            border-color: #f6ad55;
+        }
+        
+        .period-title {
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 5px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        
+        .period-years {
+            color: #cbd5e0;
+            font-size: 13px;
+        }
+        
+        .philosopher-card {
+            background: white;
+            border-radius: 10px;
+            padding: 18px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .philosopher-card:hover {
+            transform: translateY(-8px);
+        }
+        
+        .country-marker {
+            width: 28px;
+            height: 28px;
+            background: #f6ad55;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.4);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .country-marker:hover {
+            transform: scale(1.4);
+            z-index: 1000;
+        }
+        
+        .philosopher-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        
+        .philosopher-modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .modal-content {
+            background: linear-gradient(to bottom right, #f7fafc, #ebf8ff);
+            border-radius: 16px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #e53e3e;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .philosopher-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            display: block;
+            border: 4px solid #f6ad55;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        
+        .timeline-highlight {
+            position: absolute;
+            height: 100%;
+            width: 160px;
+            background: rgba(246, 173, 85, 0.4);
+            border-radius: 12px;
+            top: 0;
+            transition: left 0.6s ease;
+            z-index: -1;
+        }
+        
+        .region-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+        
+        .west-badge {
+            background: linear-gradient(to right, #3182ce, #63b3ed);
+            color: white;
+        }
+        
+        .east-badge {
+            background: linear-gradient(to right, #dd6b20, #ed8936);
+            color: white;
+        }
+        
+        .header-pattern {
+            background: linear-gradient(135deg, #c53030 0%, #dd6b20 100%);
+            height: 15px;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .philosopher-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .info-panel {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .globe-icon {
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-amber-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-red-800 via-orange-700 to-amber-700 py-8 px-4 text-center relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-10 left-10 text-6xl opacity-30">φ</div>
+            <div class="absolute bottom-10 right-10 text-6xl opacity-30">φ</div>
+            <div class="absolute top-1/3 right-1/4 text-8xl opacity-20">♔</div>
+        </div>
+        
+        <div class="relative z-10">
+            <h1 class="text-4xl md:text-5xl font-bold mb-3 text-white tracking-wide">G'ARB VA SHARQ FAYLASUFLARI</h1>
+            <p class="text-amber-200 text-lg md:text-xl">Tarix davomida g'arb va sharq faylasuflarini kashf eting</p>
+            
+            <div class="mt-6 flex justify-center items-center">
+                <div class="flex items-center bg-white/20 px-4 py-2 rounded-full">
+                    <i class="fas fa-globe-asia text-amber-300 text-2xl mr-2 globe-icon"></i>
+                    <span class="text-white font-medium">Sharq faylasuflari</span>
+                    <span class="mx-3 text-white">|</span>
+                    <i class="fas fa-globe-europe text-blue-300 text-2xl mr-2 globe-icon"></i>
+                    <span class="text-white font-medium">G'arb faylasuflari</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="header-pattern mt-6"></div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 max-w-7xl">
+        <!-- Info Panel -->
+        <div class="info-panel mb-6">
+            <div class="flex flex-col md:flex-row md:items-center">
+                <div class="flex-1">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">O'yin qo'llanmasi</h2>
+                    <p class="text-gray-700">
+                        <i class="fas fa-arrow-down text-blue-500 mr-2"></i>Pastdagi vaqt jadvalidan davrni tanlang
+                        <i class="fas fa-map-marker-alt text-orange-500 mx-3"></i>Xaritadagi davlat belgisini bosing
+                        <i class="fas fa-user-graduate text-purple-500 mx-3"></i>Faylasuf haqida ma'lumot oling
+                    </p>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <div class="flex items-center">
+                        <span class="bg-blue-500 w-4 h-4 rounded-full mr-2"></span>
+                        <span class="text-gray-700 mr-4">G'arb</span>
+                        <span class="bg-orange-500 w-4 h-4 rounded-full mr-2"></span>
+                        <span class="text-gray-700">Sharq</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Map Container -->
+        <div class="relative mb-8">
+            <div id="map" class="w-full"></div>
+            <div class="absolute top-4 right-4 bg-white px-4 py-2 rounded-lg shadow-lg z-20">
+                <h3 class="font-bold text-lg" id="currentPeriod">Qadimgi davr (mil.avv. 800 - mil. 500)</h3>
+            </div>
+        </div>
+        
+        <!-- Timeline -->
+        <div class="timeline-container">
+            <div class="timeline-highlight" id="timelineHighlight"></div>
+            <div class="timeline" id="timeline">
+                <!-- Periods will be added dynamically -->
+            </div>
+        </div>
+    </main>
+    
+    <!-- Philosophers Modal -->
+    <div class="philosopher-modal" id="philosopherModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <div id="philosopherContent">
+                <!-- Content will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <script>
+        // Game data - philosophers by country and period
+        const gameData = {
+            periods: [
+                { id: 'ancient', name: 'Qadimgi davr', years: 'mil.avv. 800 - mil. 500', color: '#e53e3e' },
+                { id: 'medieval', name: 'O\'rta asrlar', years: 'mil. 500 - mil. 1500', color: '#dd6b20' },
+                { id: 'renaissance', name: 'Uyg\'onish davri', years: 'mil. 1300 - mil. 1700', color: '#38a169' },
+                { id: 'enlightenment', name: 'Ma\'rifat davri', years: 'mil. 1685 - mil. 1815', color: '#3182ce' },
+                { id: 'modern', name: 'Zamonaviy davr', years: 'mil. 1800 - hozirgacha', color: '#805ad5' }
+            ],
+            countries: {
+                'Yunoniston': { 
+                    lat: 39.0742, 
+                    lng: 21.8243,
+                    region: 'west',
+                    periods: {
+                        ancient: [
+                            { name: 'Sokrat', lifespan: 'mil.avv. 470-399', contributions: 'Sokrat usuli, axloq', quote: 'Yagona haqiqiy donolik - siz hech narsa bilmasligingizni bilishdir.' },
+                            { name: 'Aflotun', lifespan: 'mil.avv. 428-348', contributions: 'G\'oyalar nazariyasi, "Respublika"', quote: 'Jasorat - qo\'rqmaslik kerak bo\'lgan narsani bilishdir.' },
+                            { name: 'Aristotel', lifespan: 'mil.avv. 384-322', contributions: 'Mantiq, metafizika, axloq', quote: 'Ma\'lumotli aqlning belgisi - fikrni qabul qilmasdan uni ko\'rib chiqish qobiliyatidir.' }
+                        ]
+                    }
+                },
+                'Xitoy': { 
+                    lat: 35.8617, 
+                    lng: 104.1954,
+                    region: 'east',
+                    periods: {
+                        ancient: [
+                            { name: 'Konfutsiy', lifespan: 'mil.avv. 551-479', contributions: 'Konfutsiylik, axloq', quote: 'Siz to\'xtamasangiz, qanchalik sekin borsangiz ham, farqi yo\'q.' },
+                            { name: 'Lao Tzi', lifespan: 'mil.avv. VI asr', contributions: 'Taoizm, "Tao Te Ching"', quote: 'Ming mil yo\'l bitta qadam bilan boshlanadi.' }
+                        ],
+                        medieval: [
+                            { name: 'Chju Si', lifespan: 'mil. 1130-1200', contributions: 'Neo-konfutsiylik', quote: 'O\'rganishning yo\'li - harakat qilishdir.' }
+                        ]
+                    }
+                },
+                'Hindiston': { 
+                    lat: 20.5937, 
+                    lng: 78.9629,
+                    region: 'east',
+                    periods: {
+                        ancient: [
+                            { name: 'Budda', lifespan: 'mil.avv. 563-483', contributions: 'Buddizm, to\'rt oliy haqiqat', quote: 'Aql hamma narsadir. Siz o\'ylagan narsaga aylanasiz.' },
+                            { name: 'Chanakya', lifespan: 'mil.avv. 371-283', contributions: 'Arthashastra, siyosiy falsafa', quote: 'Ta\'lim - eng yaxshi do\'st. Bilimli odam hamma joyda hurmatga sazovor bo\'ladi.' }
+                        ],
+                        medieval: [
+                            { name: 'Adi Shankara', lifespan: 'mil. 788-820', contributions: 'Advayta Vedanta', quote: 'Dunyo tushga o\'xshaydi. Donolar uni shunday ko\'radilar.' }
+                        ]
+                    }
+                },
+                'Fors': { 
+                    lat: 32.4279, 
+                    lng: 53.6880,
+                    region: 'east',
+                    periods: {
+                        medieval: [
+                            { name: 'Ibn Sino', lifespan: 'mil. 980-1037', contributions: 'Islom falsafasi, tibbiyot', quote: 'Narsaning bilimi, chunki hamma narsaning sabablari bor, uning sabablari bilan tanilmaguncha, o\'zlashtirilgan yoki to\'liq emas.' },
+                            { name: 'Al-G\'azzoliy', lifespan: 'mil. 1058-1111', contributions: 'Islom ilohiyoti, tasavvuf', quote: 'Quvonchning kaliti: ongingizning jilovini o\'z qo\'lingizga oling.' }
+                        ]
+                    }
+                },
+                'Italiya': { 
+                    lat: 41.8719, 
+                    lng: 12.5674,
+                    region: 'west',
+                    periods: {
+                        renaissance: [
+                            { name: 'Nikolo Makiavelli', lifespan: '1469-1527', contributions: 'Siyosiy realizm, "Shahzoda"', quote: 'Agar ikkalasini ham bo\'lolmasangiz, sevilmagandan ko\'ra qo\'rqitish yaxshiroqdir.' },
+                            { name: 'Jordano Bruno', lifespan: '1548-1600', contributions: 'Kosmologiya, panteizm', quote: 'Koinot bitta, cheksiz, harakatsizdir.' }
+                        ]
+                    }
+                },
+                'Fransiya': { 
+                    lat: 46.2276, 
+                    lng: 2.2137,
+                    region: 'west',
+                    periods: {
+                        enlightenment: [
+                            { name: 'Volter', lifespan: '1694-1778', contributions: 'So\'z erkinligi, davlat va cherkovni ajratish', quote: 'Men siz aytgan narsaga qarshiman, lekin siz uni aytish huquqingiz uchun o\'lishga tayyorman.' },
+                            { name: 'Jan-Jak Russo', lifespan: '1712-1778', contributions: 'Ijtimoiy shartnoma, umumiy iroda', quote: 'Inson erkin bo\'lib tug\'iladi, lekin hamma joyda zanjirlarga qamalgan.' }
+                        ],
+                        modern: [
+                            { name: 'Jan-Pol Sartr', lifespan: '1905-1980', contributions: 'Ekzistensializm, fenomenologiya', quote: 'Inson erkin bo\'lishga mahkum.' }
+                        ]
+                    }
+                },
+                'Germaniya': { 
+                    lat: 51.1657, 
+                    lng: 10.4515,
+                    region: 'west',
+                    periods: {
+                        enlightenment: [
+                            { name: 'Immanuil Kant', lifespan: '1724-1804', contributions: '"Sof aql tanqidi", deontologiya', quote: 'Bilishga jur\'at eting! O\'z aqlingizdan foydalanishga jur\'at eting!' }
+                        ],
+                        modern: [
+                            { name: 'Karl Marks', lifespan: '1818-1883', contributions: 'Marksizm, tarixiy materializm', quote: 'Faylasuflar dunyoni har xil tarzda izohlagina kelishdi. Masala uni o\'zgartirishda.' }
+                        ]
+                    }
+                },
+                'Angliya': { 
+                    lat: 52.3555, 
+                    lng: -1.1743,
+                    region: 'west',
+                    periods: {
+                        enlightenment: [
+                            { name: 'Jon Lokk', lifespan: '1632-1704', contributions: 'Empirizm, ijtimoiy shartnoma', quote: 'Barcha insoniyat... teng va mustaqil bo\'lib, hech kim boshqasining hayotiga, sog\'lig\'iga, erkinligiga yoki mol-mulkiga zarar yetkazmasligi kerak.' }
+                        ],
+                        modern: [
+                            { name: 'Bertran Rassell', lifespan: '1872-1970', contributions: 'Mantiq, analitik falsafa', quote: 'Insoniyatni qutqaradigan yagona narsa - hamkorlikdir.' }
+                        ]
+                    }
+                },
+                'Yaponiya': { 
+                    lat: 36.2048, 
+                    lng: 138.2529,
+                    region: 'east',
+                    periods: {
+                        medieval: [
+                            { name: 'Dog\'en', lifespan: '1200-1253', contributions: 'Soto Zen buddizmi', quote: 'O\'rganish - bu o\'zlikni unutish.' }
+                        ],
+                        modern: [
+                            { name: 'Nishida Kitaro', lifespan: '1870-1945', contributions: 'Kioto maktabi, falsafa', quote: 'Haqiqiy dunyo biz unga qanday munosabatda bo\'lishimizga bog\'liq.' }
+                        ]
+                    }
+                },
+                'Korea': { 
+                    lat: 35.9078, 
+                    lng: 127.7669,
+                    region: 'east',
+                    periods: {
+                        medieval: [
+                            { name: 'Yi I', lifespan: '1536-1584', contributions: 'Neo-konfutsiylik', quote: 'Donolik - narsalarni ularning tabiati bo\'yicha ko\'rishdir.' }
+                        ]
+                    }
+                },
+                'Eron': { 
+                    lat: 32.4279, 
+                    lng: 53.6880,
+                    region: 'east',
+                    periods: {
+                        medieval: [
+                            { name: 'Rumiy', lifespan: '1207-1273', contributions: 'Tasavvuf she\'riyati', quote: 'Siz ovozsiz suhbatda nima izlayotganingizni bilmayapsiz, lekin qalbingiz biladi.' }
+                        ]
+                    }
+                },
+                'O\'zbekiston': { 
+                    lat: 41.3775, 
+                    lng: 64.5853,
+                    region: 'east',
+                    periods: {
+                        medieval: [
+                            { name: 'Alisher Navoiy', lifespan: '1441-1501', contributions: 'Adabiyot, falsafa, tasavvuf', quote: 'Donolik - narsalarni ularning haqiqiy qadriyatida ko\'rishdir.' },
+                            { name: 'Mirzo Ulug\'bek', lifespan: '1394-1449', contributions: 'Astronomiya, matematika', quote: 'Bilim senga yo\'l ko\'rsatsin, johillik esa yo\'ldan ozdirsin.' }
+                        ]
+                    }
+                }
+            }
+        };
+
+        // Initialize the map
+        const map = L.map('map').setView([30, 60], 2);
+        
+        // Add tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            maxZoom: 8,
+            minZoom: 2
+        }).addTo(map);
+        
+        // Create timeline
+        const timeline = document.getElementById('timeline');
+        const timelineHighlight = document.getElementById('timelineHighlight');
+        const currentPeriodElement = document.getElementById('currentPeriod');
+        let activePeriod = gameData.periods[0].id;
+        
+        gameData.periods.forEach((period, index) => {
+            const periodEl = document.createElement('div');
+            periodEl.className = `period ${index === 0 ? 'active' : ''}`;
+            periodEl.dataset.period = period.id;
+            periodEl.style.borderLeft = `5px solid ${period.color}`;
+            
+            periodEl.innerHTML = `
+                <div class="period-title">${period.name}</div>
+                <div class="period-years">${period.years}</div>
+            `;
+            
+            periodEl.addEventListener('click', () => {
+                // Update active period
+                activePeriod = period.id;
+                
+                // Update UI
+                document.querySelectorAll('.period').forEach(p => p.classList.remove('active'));
+                periodEl.classList.add('active');
+                
+                // Update highlight position
+                const position = periodEl.offsetLeft - timeline.offsetLeft;
+                timelineHighlight.style.left = `${position}px`;
+                
+                // Update current period display
+                currentPeriodElement.textContent = `${period.name} (${period.years})`;
+                
+                // Update markers on map
+                updateMapMarkers();
+            });
+            
+            timeline.appendChild(periodEl);
+        });
+        
+        // Position the highlight for the first period
+        setTimeout(() => {
+            const firstPeriod = document.querySelector('.period');
+            if (firstPeriod) {
+                const position = firstPeriod.offsetLeft - timeline.offsetLeft;
+                timelineHighlight.style.left = `${position}px`;
+                currentPeriodElement.textContent = `${gameData.periods[0].name} (${gameData.periods[0].years})`;
+            }
+        }, 100);
+        
+        // Function to update markers based on active period
+        function updateMapMarkers() {
+            // Clear existing markers
+            map.eachLayer(layer => {
+                if (layer instanceof L.Marker) {
+                    map.removeLayer(layer);
+                }
+            });
+            
+            // Add markers for countries with philosophers in active period
+            for (const country in gameData.countries) {
+                const countryData = gameData.countries[country];
+                
+                if (countryData.periods[activePeriod]) {
+                    // Determine marker color based on region
+                    const color = countryData.region === 'west' ? '#3182ce' : '#dd6b20';
+                    const textColor = countryData.region === 'west' ? '#fff' : '#fff';
+                    
+                    const marker = L.marker([countryData.lat, countryData.lng], {
+                        icon: L.divIcon({
+                            className: 'country-marker',
+                            iconSize: [28, 28],
+                            html: `<div style="background-color: ${color}; color: ${textColor}">${country.charAt(0)}</div>`
+                        })
+                    });
+                    
+                    marker.addTo(map);
+                    
+                    marker.on('click', () => {
+                        showPhilosophers(country, activePeriod);
+                    });
+                    
+                    // Add hover effect with tooltip
+                    marker.bindTooltip(country, {
+                        permanent: false,
+                        direction: 'top',
+                        className: 'font-bold'
+                    });
+                }
+            }
+        }
+        
+        // Function to show philosophers for a country and period
+        function showPhilosophers(country, period) {
+            const philosophers = gameData.countries[country].periods[period];
+            const modal = document.getElementById('philosopherModal');
+            const content = document.getElementById('philosopherContent');
+            const region = gameData.countries[country].region;
+            
+            // Determine region badge
+            const regionBadge = region === 'west' 
+                ? '<span class="region-badge west-badge"><i class="fas fa-globe-europe mr-1"></i> G\'arb</span>' 
+                : '<span class="region-badge east-badge"><i class="fas fa-globe-asia mr-1"></i> Sharq</span>';
+            
+            let html = `
+                <div class="text-center mb-6">
+                    <h2 class="text-3xl font-bold mb-2 text-${region === 'west' ? 'blue' : 'orange'}-800">
+                        ${country} faylasuflari
+                    </h2>
+                    <p class="text-gray-600 text-xl">${gameData.periods.find(p => p.id === period).name} davri</p>
+                    ${regionBadge}
+                </div>
+                <div class="philosopher-grid">
+            `;
+            
+            philosophers.forEach(philosopher => {
+                const initial = philosopher.name.split(' ').map(n => n[0]).join('');
+                const bgColor = region === 'west' ? 'from-blue-100 to-blue-50' : 'from-orange-100 to-amber-50';
+                const borderColor = region === 'west' ? 'border-blue-300' : 'border-orange-300';
+                
+                html += `
+                    <div class="philosopher-card bg-gradient-to-br ${bgColor} border ${borderColor}">
+                        <div class="flex items-center mb-4">
+                            <div class="w-16 h-16 rounded-full ${region === 'west' ? 'bg-blue-200' : 'bg-orange-200'} border-2 ${region === 'west' ? 'border-blue-500' : 'border-orange-500'} flex items-center justify-center text-2xl font-bold ${region === 'west' ? 'text-blue-700' : 'text-orange-700'}">
+                                ${initial}
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="font-bold text-xl text-gray-800">${philosopher.name}</h3>
+                                <p class="text-gray-600 text-sm">${philosopher.lifespan}</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 mb-3"><span class="font-semibold">Hissa qoʻshgan sohalari:</span> ${philosopher.contributions}</p>
+                        <blockquote class="italic border-l-4 ${region === 'west' ? 'border-blue-500' : 'border-orange-500'} pl-3 py-1 text-gray-700 bg-white/50 rounded-r">
+                            <i class="fas fa-quote-left ${region === 'west' ? 'text-blue-400' : 'text-orange-400'} mr-2"></i>
+                            ${philosopher.quote}
+                        </blockquote>
+                    </div>
+                `;
+            });
+            
+            html += `</div>`;
+            
+            content.innerHTML = html;
+            modal.classList.add('active');
+        }
+        
+        // Close modal functionality
+        document.getElementById('closeModal').addEventListener('click', () => {
+            document.getElementById('philosopherModal').classList.remove('active');
+        });
+        
+        // Close modal when clicking outside
+        document.getElementById('philosopherModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('philosopherModal')) {
+                document.getElementById('philosopherModal').classList.remove('active');
+            }
+        });
+        
+        // Initialize with markers for the first period
+        updateMapMarkers();
+        
+        // Add attribution
+        const attribution = L.control({position: 'bottomright'});
+        attribution.onAdd = function(map) {
+            const div = L.DomUtil.create('div', 'leaflet-control-attribution');
+            div.innerHTML = 'G\'arb va sharq faylasuflari - Sharq va G\'arb faylasuflari';
+            return div;
+        };
+        attribution.addTo(map);
+    </script>
+</body>
+</html>
